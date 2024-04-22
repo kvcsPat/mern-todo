@@ -1,0 +1,26 @@
+.todo {
+  display: flex;
+  justify-content: space-between;
+
+  width: 50%;
+
+  padding: 0.5rem 1rem;
+
+  font-size: 1.5rem;
+
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.todo-status {
+  padding: 0;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition: all 0.2s;
+
+  &:hover {
+    transform: scale(1.15);
+  }
+}
