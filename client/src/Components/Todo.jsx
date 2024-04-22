@@ -1,5 +1,12 @@
 import React from "react";
-import "../Style/Todo.css";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { pink } from "@mui/material/colors";
+import { Item } from "../mui";
 
 export default function Todo({ todo, setTodos }) {
   /* ----- UPDATE Todo status ----- */
@@ -39,19 +46,36 @@ export default function Todo({ todo, setTodos }) {
   };
 
   return (
-    <div className="todo">
-      <p>{todo.todo}</p>
-      <div>
-        <button
-          className="todo-status"
+    <Item>
+      <Typography component="p" variant="body1" color={"#fff"}>
+        {todo.todo}
+      </Typography>
+      <Stack
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        spacing={0}
+      >
+        <Button
+          variant="text"
           onClick={() => updateTodo(todo._id, todo.status)}
         >
-          {todo.status ? "True" : "False"}
-        </button>
-        <button className="todo-delete" onClick={() => deleteTodo(todo._id)}>
-          Delete
-        </button>
-      </div>
-    </div>
+          {todo.status ? (
+            <CheckBoxIcon color="success" fontSize="large">
+              Filled
+            </CheckBoxIcon>
+          ) : (
+            <CheckBoxOutlineBlankIcon color="disabled" fontSize="large">
+              Filled
+            </CheckBoxOutlineBlankIcon>
+          )}
+        </Button>
+        <Button variant="text" onClick={() => deleteTodo(todo._id)}>
+          <DeleteIcon sx={{ color: pink[500] }} fontSize="large">
+            Filled
+          </DeleteIcon>
+        </Button>
+      </Stack>
+    </Item>
   );
 }

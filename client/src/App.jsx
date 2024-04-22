@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Form from "./Components/Form";
 import Todos from "./Components/Todos";
-import "./Style/reset.css";
-import "./Style/App.css";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import { darkTheme } from "./mui";
 
 export default function App() {
   const [todos, setTodos] = useState([]);
@@ -19,10 +22,20 @@ export default function App() {
   }, []);
 
   return (
-    <main className="container">
-      <h1 className="title">Todo App</h1>
-      <Form todos={todos} setTodos={setTodos} />
-      <Todos todos={todos} setTodos={setTodos} />
-    </main>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <Container component="main" maxWidth="sm" sx={{ marginBottom: "1rem" }}>
+        <Typography
+          component="h1"
+          variant="h2"
+          gutterBottom
+          sx={{ textAlign: "center", marginTop: "1rem" }}
+        >
+          Todo App
+        </Typography>
+        <Form todos={todos} setTodos={setTodos} />
+        <Todos todos={todos} setTodos={setTodos} />
+      </Container>
+    </ThemeProvider>
   );
 }

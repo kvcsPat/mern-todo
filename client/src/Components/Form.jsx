@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import "../Style/Form.css";
+import Container from "@mui/material/Container";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function Form({ todos, setTodos }) {
   const [content, setContent] = useState("");
@@ -24,16 +28,37 @@ export default function Form({ todos, setTodos }) {
   };
 
   return (
-    <form className="form" onSubmit={createNewTodo}>
-      <input
-        type="text"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        placeholder="Enter a new todo..."
-        className="form-input"
-        required
-      />
-      <button type="submit">Create Todo</button>
-    </form>
+    <Container
+      component="form"
+      onSubmit={createNewTodo}
+      sx={{ padding: "0 !important" }}
+    >
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        margin={"1rem auto"}
+        spacing={2}
+      >
+        <TextField
+          id="outlined-basic"
+          label="Add new todo"
+          variant="outlined"
+          fullWidth
+          size="medium"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          required
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          size="large"
+          sx={{ padding: "10px 22px" }}
+        >
+          <AddIcon fontSize="large">Filled</AddIcon>
+        </Button>
+      </Stack>
+    </Container>
   );
 }
