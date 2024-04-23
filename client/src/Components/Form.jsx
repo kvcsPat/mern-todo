@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import AddIcon from "@mui/icons-material/Add";
 
-export default function Form({ todos, setTodos }) {
+export default function Form({ todos, setTodos, setAlert }) {
   const [content, setContent] = useState("");
 
   /* ----- CREATE Todo ----- */
@@ -24,6 +24,8 @@ export default function Form({ todos, setTodos }) {
 
       setContent("");
       setTodos([...todos, newTodo]);
+    } else {
+      setAlert(true);
     }
   };
 
@@ -48,7 +50,6 @@ export default function Form({ todos, setTodos }) {
           size="medium"
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          required
         />
         <Button
           type="submit"
